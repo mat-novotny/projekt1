@@ -2,7 +2,7 @@ package cz.engeto.plants;
 
 import java.time.LocalDate;
 
-public class Plant {
+public class Plant implements Comparable<Plant> {
     private String name;
     private String notes;
     private LocalDate planted;
@@ -80,5 +80,10 @@ public class Plant {
             throw new PlantException("Frekvence zalévání musí být kladné číslo! Zadali jste " + wateringFrequency);
         }
         this.wateringFrequency = wateringFrequency;
+    }
+
+    @Override
+    public int compareTo(Plant other) {
+        return this.name.compareTo(other.name);
     }
 }
