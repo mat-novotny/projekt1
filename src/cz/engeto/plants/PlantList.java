@@ -119,6 +119,7 @@ public class PlantList {
             {
                 String line = plant.getName() + delimiter + plant.getNotes() + delimiter + plant.getWateringFrequency() + delimiter
                         + plant.getLastWatered() + plant.getPlanted();
+                writer.println(line);
             }
         } catch (IOException e) {
             throw new PlantException(
