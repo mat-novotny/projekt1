@@ -39,13 +39,21 @@ public class PlantList {
         plants.clear();
     }
 
-    public void sortName()
+    /*V zadání byly specifikované tato dvě kritéria pro třídění, ale usoudil jsem že by byla vhodná i obecná metoda.
+        Protože se ale dá předpokládat, že třídění podle jména a data posledního zalití bude nejčastěji používané,
+        přidal jsem tyto jako separátní metody, ať není neustále potřeba posílat komparátor
+    */
+    public void sortList(Comparator comp)
     {
-        plants.sort(null);
+        plants.sort(comp);
     }
-    public void sortLastWatered()
+    public void sortByName()
     {
-        plants.sort(Comparator.comparing(Plant::getLastWatered));
+    sortList(null);
+    }
+    public void sortByLastWatered()
+    {
+        sortList(Comparator.comparing(Plant::getLastWatered));
     }
     public List<Plant> getListToWater()
     {
@@ -118,7 +126,7 @@ public class PlantList {
             for(Plant plant : plants)
             {
                 String line = plant.getName() + delimiter + plant.getNotes() + delimiter + plant.getWateringFrequency() + delimiter
-                        + plant.getLastWatered() + plant.getPlanted();
+                        + plant.getLastWatered() + delimiter + plant.getPlanted();
                 writer.println(line);
             }
         } catch (IOException e) {
